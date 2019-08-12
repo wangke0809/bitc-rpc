@@ -288,7 +288,7 @@ static bool blockstore_validate_chkpt(const uint256 *hash, uint32 height) {
  *
  *------------------------------------------------------------------------
  */
-
+// 通过递归选择最长链，区分主链和孤块
 static int blockstore_set_chain_links(struct blockstore *bs,
                                       struct blockentry *be) {
   struct blockentry *prev;
@@ -433,6 +433,7 @@ static void blockstore_set_best_chain(struct blockstore *bs,
  *------------------------------------------------------------------------
  */
 
+// 添加区块，涉及到最长链选择
 static void blockstore_add_entry(struct blockstore *bs, struct blockentry *be,
                                  const uint256 *hash) {
   bool s;
